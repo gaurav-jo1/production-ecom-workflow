@@ -1,70 +1,81 @@
-# E-commerce 🏢
-Welcome to **Shoppy**, Shoppy is a portfolio project designed to showcase a seamless online shopping experience. With features like user login, sign-up, Google login, a great UI, and Redis for caching, it offers a robust and efficient platform for modern e-commerce.
+# Production E-Commerce Workflow 🏢
+
+Welcome to **Production E-Commerce Workflow**, a full-stack portfolio project demonstrating a production-grade online shopping system. This end-to-end platform goes beyond basic demos, featuring robust authentication (including signup, login, password reset with email validation), Google OAuth integration, user-specific persistent shopping carts, a polished React UI, and a scalable architecture with Docker, PostgreSQL for data persistence, Redis for caching, and a Python backend.
+
+Key highlights:
+- **Secure User Flows**: Complete auth/authorization with email-based recovery and validation codes.
+- **Seamless Experience**: Persistent carts tied to user sessions, smooth OAuth handoffs.
+- **Production-Ready**: Dockerized for easy deployment, modern stack for scalability.
 
 ![Screenshot from 2024-07-10 08-36-34](https://github.com/gaurav-jo1/E-commerce/assets/93304640/8cce0615-6110-4556-8e6b-eada028ffa34)
 
 ![Screenshot from 2024-07-10 08-26-37](https://github.com/gaurav-jo1/E-commerce/assets/93304640/c38fda5d-490c-4bdd-ad10-c0ee4a410c7a)
 
 ## Getting Started 🔥
-To get started with the project, follow these steps:
 
-1. Clone the repository to your local machine:
-    ```sh
-    git clone https://github.com/Gaurav-jo1/E-commerce.git
-    ```
+Follow these steps to set up and run the project locally:
+
+1. Clone the repository:
+   ```sh
+   git clone https://github.com/gaurav-jo1/Production-ECom-Workflow.git
+   ```
 
 2. Navigate to the project directory:
-    ```sh
-    cd E-commerce
-    ```
+   ```sh
+   cd Production-ECom-Workflow
+   ```
 
-3. Install the frontend project dependencies:
-    ```sh
-    cd frontend && npm install
-    ```
+3. Install frontend dependencies:
+   ```sh
+   cd frontend && npm install
+   cd ..
+   ```
 
-4. Set up the backend environment (optional for development):
-    - Create a virtual environment:
-        ```sh
-        cd backend && virtualenv venv
-        ```
-    - Activate the virtual environment and install dependencies:
-        ```sh
-        source ./venv/bin/activate && pip install -r requirements.txt
-        ```
+4. Set up backend environment (optional for non-Docker dev):
+   - Create and activate a virtual environment:
+     ```sh
+     cd backend
+     python -m venv venv
+     source venv/bin/activate  # On Windows: venv\Scripts\activate
+     pip install -r requirements.txt
+     cd ..
+     ```
 
-5. For Google Sign-In credentials (**optional**):
-    - Set up a Google API Console project and configure the consent screen:
-        - Go to the [Google API Console](https://console.cloud.google.com/apis/dashboard)
-        - Create a new project
-        - Click on "Create credentials" and select "OAuth client ID"
-        - Select "Web application" as the application type
-        - Enter a name for your OAuth client ID
-        - Add the authorized JavaScript origins and redirect URIs for your website
-        - Click "Create"
-        - Note down your client ID and client secret.
-
-    - Refer to this [Video tutorial](https://www.youtube.com/watch?v=roxC8SMs7HU) for setting up the Google API console.
-
-    - Download the JSON file with your Google API credentials, name it `client_secret.json`, and place it in the `frontend` directory.
+5. Configure Google OAuth (optional for enhanced login):
+   - Create a project in the [Google API Console](https://console.cloud.google.com/apis/dashboard).
+   - Enable the Google+ API and create OAuth 2.0 credentials (Web application type).
+   - Add authorized origins (e.g., `http://localhost:5173`) and redirect URIs (e.g., `http://localhost:5173/auth/callback`).
+   - Download the `client_secret.json` and place it in the `frontend` directory.
+   - For a step-by-step guide, watch this [YouTube tutorial](https://www.youtube.com/watch?v=roxC8SMs7HU).
 
     <p align="center">
     <img src="https://user-images.githubusercontent.com/93304640/236677794-cddb3f35-2ef9-4a60-b9cf-8547a3a54753.png" alt="client_json_img" width="450" height="450">
     </p>
 
-6. Add the Google client ID to the backend `.env` file:
-    ```sh
-    GOOGLE_CLIENT_ID='your_google_client_id'
-    ```
-
-7. **Run the application:**
-   Navigate to the root directory and start the services with Docker:
-     ```sh
-     docker compose up
+6. Update environment variables:
+   - In `backend/.env`, add:
      ```
-     
+     GOOGLE_CLIENT_ID=your_google_client_id_here
+     # Add other vars like DB credentials if needed for custom setup
+     ```
+
+7. Run the application with Docker:
+   ```sh
+   docker compose up --build
+   ```
+   This spins up all services (frontend, backend, Postgres, Redis, Redash) in containers.
+
 ## Access the Application
 
-Access the application at: 🔗 http://localhost:5173
+- **Frontend**: Open [http://localhost:5173](http://localhost:5173) in your browser.
+- **Backend API**: Available at [http://localhost:8000](http://localhost:8000) (e.g., for docs at `/docs`).
 
-That's it! You should now be able to get started with the project and use Docker Compose to run the application. If you have any questions or issues, feel free to open an issue on the repository. Thanks for using my project!
+## Troubleshooting
+- Ensure Docker and Docker Compose are installed.
+- For port conflicts, edit `docker-compose.yml`.
+- If using the virtualenv backend setup, run `uvicorn main:app --reload` in the backend dir.
+
+## Contributing
+Feel free to fork, raise issues, or submit PRs for improvements. This project is designed as a showcase but welcomes enhancements!
+
+Thanks for checking out **Production E-Commerce Workflow**—a testament to building deployable, full-featured systems! 🚀
