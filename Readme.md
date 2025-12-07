@@ -17,12 +17,12 @@ Follow these steps to set up and run the project locally:
 
 1. Clone the repository:
    ```sh
-   git clone https://github.com/gaurav-jo1/Production-ECom-Workflow.git
+   git clone https://github.com/gaurav-jo1/production-ecom-workflow.git
    ```
 
 2. Navigate to the project directory:
    ```sh
-   cd Production-ECom-Workflow
+   cd production-ecom-workflow
    ```
 
 3. Install frontend dependencies:
